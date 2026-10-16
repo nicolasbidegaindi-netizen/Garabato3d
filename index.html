@@ -1,6 +1,6 @@
 <!doctype html>
 <!--
-  Garabato 3D · licencia MIT (ver LICENSE)
+  GabarateAR · licencia MIT (ver LICENSE)
   Una colaboración de Disain con Pablo Melgarejo y Diego Carrasco,
   para beneficio de la educación y la ampliación del conocimiento humano.
 -->
@@ -8,9 +8,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Garabato 3D: dibujá en 2D, dale altura, forma y giro, y descargá el STL para imprimir en 3D.">
+<meta name="description" content="GabarateAR: dibujá en 2D, dale altura, forma y giro, y descargá el STL para imprimir en 3D.">
 <style>html{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
-<title>Garabato 3D</title>
+<title>GabarateAR</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gochi+Hand&family=Patrick+Hand&family=Nunito:wght@500;700;800;900&family=Fredoka:wght@600&family=Bebas+Neue&family=Lobster&family=Permanent+Marker&family=Bungee&display=swap">
@@ -78,7 +78,7 @@ body.resizing{cursor:col-resize;user-select:none}
 .palette button[aria-pressed="true"]{box-shadow:0 0 0 3px var(--surface),0 0 0 6px var(--ink)}
 
 .title{font-family:var(--hand);font-size:22px;line-height:1;height:36px;box-sizing:border-box;padding:0 12px;transform:rotate(1deg);box-shadow:3px 3px 0 var(--tint,var(--green));border-width:2px;--tint:var(--green);white-space:nowrap}
-.title b{font-weight:400;color:var(--pink)}
+.title b{font-weight:400;color:#0B9BF0}
 .dl{display:flex;align-items:center;gap:6px;height:36px;padding:0 12px;border-width:2px;box-shadow:3px 3px 0 var(--blue);font-family:var(--label);font-size:18px;--tint:var(--blue)}
 .dl svg{width:20px;height:20px}
 .dl:disabled{opacity:.4;cursor:not-allowed}
@@ -180,7 +180,7 @@ input[type=range]{width:100%;accent-color:var(--pink);height:28px;margin:0}
   <section class="half" id="left" aria-label="Papel de dibujo">
     <canvas id="draw" tabindex="0" aria-label="Papel: dibujá acá"></canvas>
     <div class="topleft">
-      <button class="sketch title" id="logoBtn" aria-haspopup="true" aria-expanded="false" title="Menú del dibujo">Garabato<b>3D</b><span class="caret" aria-hidden="true">▾</span></button>
+      <button class="sketch title" id="logoBtn" aria-haspopup="true" aria-expanded="false" title="Menú del dibujo">Gabarate<b>AR</b><span class="caret" aria-hidden="true">▾</span></button>
       <button class="sketch ibtn" id="photoBtn" style="--tint:var(--pink)" title="Poner una imagen para calcar" aria-label="Poner una imagen para calcar">
         <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"><rect x="4" y="6" width="24" height="20" rx="2.5" fill="var(--pink)"/><circle cx="11.5" cy="12.5" r="2.3" fill="var(--surface)"/><path d="M4.5 23l7-6.5 5 4.5 4-3.5 7 6"/></svg>
       </button>
@@ -216,7 +216,7 @@ input[type=range]{width:100%;accent-color:var(--pink);height:28px;margin:0}
         <form class="row" id="saveForm"><input type="text" id="saveName" maxlength="40" placeholder="Nombre" aria-label="Nombre del dibujo" autocomplete="off"><button class="mbtn" type="submit"><svg viewBox="0 0 32 32" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><path d="M5 5h18l4 4v18H5z" fill="var(--yellow)"/><path d="M10 5v7h10V5M10 27v-9h12v9"/></svg>Guardar</button></form>
       </div>
       <button class="mbtn mrow" id="savesBtn" aria-haspopup="true" aria-expanded="false" hidden><span>Mis dibujos <em id="savesCount"></em></span><span aria-hidden="true">▸</span></button>
-        <p class="about">Garabato 3D · licencia MIT<br>Una colaboración de Disain con Pablo Melgarejo y Diego Carrasco, para beneficio de la educación y la ampliación del conocimiento humano.</p>
+        <p class="about">GabarateAR · licencia MIT<br>Una colaboración de Disain con Pablo Melgarejo y Diego Carrasco, para beneficio de la educación y la ampliación del conocimiento humano.</p>
       </div>
       <div id="menuSaves" hidden>
         <div class="mhead"><button class="back" id="backBtn" type="button" aria-label="Volver al menú" title="Volver"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button><h4>Mis dibujos</h4></div>
@@ -1222,7 +1222,7 @@ document.addEventListener('keydown', e => {
 // ---------- descargar STL (en .zip) ----------
 function buildSTL() {
   const all = state.shapes.map(trisFor), n = all.reduce((a, t) => a + t.length / 9, 0);
-  const buf = new ArrayBuffer(84 + n * 50), dv = new DataView(buf); const head = 'Garabato 3D - mm';
+  const buf = new ArrayBuffer(84 + n * 50), dv = new DataView(buf); const head = 'GabarateAR - mm';
   for (let i = 0; i < head.length; i++) dv.setUint8(i, head.charCodeAt(i));
   dv.setUint32(80, n, true); let o = 84; const a = new THREE.Vector3(), b = new THREE.Vector3(), c = new THREE.Vector3(), nn = new THREE.Vector3(), tmp = new THREE.Vector3();
   for (const t of all) for (let i = 0; i < t.length; i += 9) {
@@ -1261,7 +1261,7 @@ function build3MF() {
     for (let i = 0; i < ts.length; i += 3) xt += `<triangle v1="${ts[i]}" v2="${ts[i + 1]}" v3="${ts[i + 2]}"/>`;
     objs.push(`<object id="${id}" type="model" pid="1" pindex="${mi}"><mesh><vertices>${xv}</vertices><triangles>${xt}</triangles></mesh></object>`); items.push(`<item objectid="${id}"/>`); cfg.push(`<object id="${id}"><metadata key="name" value="${esc(s.text || 'Figura ' + (id - 1))}"/><metadata key="extruder" value="${Math.min(mi + 1, 16)}"/></object>`); id++;
   }
-  const model = `<?xml version="1.0" encoding="UTF-8"?><model unit="millimeter" xml:lang="es-AR" xmlns="http://schemas.microsoft.com/3dmanufacturing/core/2015/02"><metadata name="Application">BambuStudio-02.00.00.00</metadata><metadata name="BambuStudio:3mfVersion">1</metadata><metadata name="Title">Garabato 3D</metadata><resources><basematerials id="1">${mats.map((c, i) => `<base name="${esc('Color ' + (i + 1))}" displaycolor="${c}FF"/>`).join('')}</basematerials>${objs.join('')}</resources><build>${items.join('')}</build></model>`;
+  const model = `<?xml version="1.0" encoding="UTF-8"?><model unit="millimeter" xml:lang="es-AR" xmlns="http://schemas.microsoft.com/3dmanufacturing/core/2015/02"><metadata name="Application">BambuStudio-02.00.00.00</metadata><metadata name="BambuStudio:3mfVersion">1</metadata><metadata name="Title">GabarateAR</metadata><resources><basematerials id="1">${mats.map((c, i) => `<base name="${esc('Color ' + (i + 1))}" displaycolor="${c}FF"/>`).join('')}</basematerials>${objs.join('')}</resources><build>${items.join('')}</build></model>`;
   const enc = new TextEncoder();
   return zipFiles([
     ['[Content_Types].xml', enc.encode('<?xml version="1.0" encoding="UTF-8"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="model" ContentType="application/vnd.ms-package.3dmanufacturing-3dmodel+xml"/></Types>')],
@@ -1278,14 +1278,14 @@ $('fmtCancel').addEventListener('click', () => { fmtBox.hidden = true; });
 fmtBox.addEventListener('keydown', e => { if (e.key === 'Escape') { e.stopPropagation(); fmtBox.hidden = true; } });
 async function saveAs(fmt) {
   fmtBox.hidden = true; if (!state.shapes.length) return;
-  const is3 = fmt === '3mf', name = 'garabato3d.' + fmt;
+  const is3 = fmt === '3mf', name = 'gabaratear.' + fmt;
   const blob = is3 ? build3MF() : new Blob([buildSTL()], { type: 'model/stl' });
   if (!downloads) { // fuera de claude.ai: descarga directa
     const url = URL.createObjectURL(blob), a = document.createElement('a');
     a.href = url; a.download = name; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(url), 2000);
     toast('Listo: se descargó ' + name + ' (en milímetros).'); return;
   }
-  try { const bytes = is3 ? new Uint8Array(await blob.arrayBuffer()) : buildSTL(); await downloads.save({ filename: is3 ? 'garabato3d-3mf.zip' : 'garabato3d.zip', data: zipOne(name, bytes) }); toast(is3 ? '¡Listo! Adentro del .zip está tu 3MF.' : '¡Listo! Adentro del .zip está tu STL.'); }
+  try { const bytes = is3 ? new Uint8Array(await blob.arrayBuffer()) : buildSTL(); await downloads.save({ filename: is3 ? 'gabaratear-3mf.zip' : 'gabaratear.zip', data: zipOne(name, bytes) }); toast(is3 ? '¡Listo! Adentro del .zip está tu 3MF.' : '¡Listo! Adentro del .zip está tu STL.'); }
   catch (err) { if (err?.code === 'declined') return; toast(err?.code === 'rate_limited' ? 'Ya hay una descarga esperando.' : 'No se pudo descargar en esta vista.'); }
 }
 $('fmtSTL').addEventListener('click', () => saveAs('stl'));

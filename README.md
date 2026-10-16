@@ -1,4 +1,4 @@
-# Garabato 3D
+# GabarateAR
 
 Dibujá en 2D, dale altura, forma y giro, y descargá el archivo **STL o 3MF** para imprimirlo en 3D. Todo corre en tu navegador: no hay servidor, no hay cuentas y tus dibujos no salen de tu equipo.
 
@@ -50,7 +50,7 @@ Se cargan desde internet, no se incluyen en este repositorio:
 - [Clipper (JavaScript)](https://sourceforge.net/projects/jsclipper/) de Angus Johnson, Boost Software License 1.0.
 - Tipografías Gochi Hand, Patrick Hand y Nunito, de Google Fonts, bajo la SIL Open Font License.
 
-Inspirado en [Doodle3D Transform](https://github.com/Doodle3D/Doodle3D-Transform) (licencia MIT). Garabato 3D es un proyecto independiente, con código propio y sin relación con el equipo de Doodle3D.
+Inspirado en [Doodle3D Transform](https://github.com/Doodle3D/Doodle3D-Transform) (licencia MIT). GabarateAR es un proyecto independiente, con código propio y sin relación con el equipo de Doodle3D.
 
 ## Licencia
 
