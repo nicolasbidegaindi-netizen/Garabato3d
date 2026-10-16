@@ -1,6 +1,6 @@
 # Garabato 3D
 
-Dibujá en 2D, dale altura, forma y giro, y descargá el archivo **STL** para imprimirlo en 3D. Todo corre en tu navegador: no hay servidor, no hay cuentas y tus dibujos no salen de tu equipo.
+Dibujá en 2D, dale altura, forma y giro, y descargá el archivo **STL o 3MF** para imprimirlo en 3D. Todo corre en tu navegador: no hay servidor, no hay cuentas y tus dibujos no salen de tu equipo.
 
 > Una colaboración de **Disain** con **Pablo Melgarejo** y **Diego Carrasco**, para beneficio de la educación y la ampliación del conocimiento humano.
 
