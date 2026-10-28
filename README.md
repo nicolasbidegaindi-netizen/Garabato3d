@@ -6,7 +6,7 @@ Dibujá en 2D, dale altura, forma y giro, y descargá el archivo **STL o 3MF** p
 
 ## Usarlo
 
-Abrí la página publicada (por ejemplo `https://TU-USUARIO.github.io/NOMBRE-DEL-REPO/`) o abrí `index.html` en un navegador moderno.
+Entrá a <https://garabatear.com.ar>: primero aparece la página de presentación y desde **Abrir la app** se entra a la app, en <https://garabatear.com.ar/app/>. Desde la app se vuelve a la presentación con **Conocé GarabateAR**, en el menú del logo.
 
 - **Lápiz, puntos y formas** (círculo, caja, estrella, corazón): todo trazo queda como una pared fina.
 - **Texto:** escribí una palabra, elegí el tamaño con el selector, y se vuelve una figura sólida (tocá un texto con la herramienta para editarlo).
@@ -21,6 +21,26 @@ Abrí la página publicada (por ejemplo `https://TU-USUARIO.github.io/NOMBRE-DEL
 - **Guardar:** el menú del logo guarda tus dibujos en este navegador (`localStorage`).
 - **Descargar:** genera `garabato3d.stl`, en milímetros.
 
+## Qué hay en este repositorio
+
+- `index.html` y `assets/`: la página de presentación ya compilada (no se editan a mano).
+- `images/`: imágenes y videos de la presentación.
+- `app/index.html`: **la app**. Es un solo archivo; se edita directo, sin compilar.
+- `landing/`: el código de la presentación (React + Tailwind). Solo hace falta si querés cambiar textos o diseño de la presentación.
+- `CNAME`: el dominio `garabatear.com.ar`.
+
+### Cambiar la presentación
+
+Hace falta [Node.js](https://nodejs.org). Desde la carpeta `landing/`:
+
+```bash
+npm install      # una sola vez
+npm run dev      # para verla mientras la editás (también sirve /app/ e /images/)
+npm run build    # vuelve a generar index.html y assets/ en la raíz del repo
+```
+
+Después subí los cambios de `index.html`, `assets/` y `landing/`.
+
 ## Correrlo en tu computadora
 
 No hace falta instalar nada. Desde esta carpeta:
@@ -29,18 +49,18 @@ No hace falta instalar nada. Desde esta carpeta:
 python3 -m http.server 8080
 ```
 
-y abrí <http://localhost:8080>.
+y abrí <http://localhost:8080> (presentación) o <http://localhost:8080/app/> (app).
 
 ## Publicarlo con GitHub Pages
 
 1. Creá un repositorio nuevo (público si usás el plan gratuito de GitHub).
-2. Subí `index.html`, `LICENSE` y este `README.md`.
+2. Subí todo el contenido de este repositorio (incluido el archivo `.nojekyll`).
 3. En **Settings → Pages**, elegí **Deploy from a branch**, rama `main`, carpeta `/ (root)`.
 4. Esperá un minuto y abrí la dirección que GitHub te muestra.
 
 ## Cómo está hecho
 
-Un solo archivo HTML, sin paso de compilación. Dibuja en `canvas` 2D, arma la malla 3D capa por capa (extrusión con giro y silueta) y la muestra con Three.js. Las paredes y los rellenos se calculan con Clipper para que no fallen con esquinas filosas ni trazos que se cruzan.
+La app es un solo archivo HTML (`app/index.html`), sin paso de compilación. Dibuja en `canvas` 2D, arma la malla 3D capa por capa (extrusión con giro y silueta) y la muestra con Three.js. Las paredes y los rellenos se calculan con Clipper para que no fallen con esquinas filosas ni trazos que se cruzan.
 
 ## Licencias de terceros
 
